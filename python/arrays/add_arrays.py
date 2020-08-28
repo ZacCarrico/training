@@ -1,7 +1,7 @@
 # add arrays that contain comma separated integers (eg. 123 would be [1,2,3] and if you added that to [9], you would get  [1, 3, 2]
 # patterns used:
 # * `reversed(range(len(arr)))`
-# * `/` to get the quotient
+# * `//` to get the quotient
 # * `%` to get the remainder
 # `insert`
 # lessons learned:
@@ -19,7 +19,7 @@ def add_arrays(arr1, arr2):
     for i in reversed(range(len(arr2))):
         total = arr1[i] + arr2[i] + a
         if total >= 10:
-            a = int(total / 10)
+            a = total // 10
             arr2[i] = total % 10
         else:
             arr2[i] = total
