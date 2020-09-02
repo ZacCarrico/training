@@ -1,7 +1,14 @@
-# sort of like a board game, given an array you see if the values can get you to the end of the array
-# for example, [3,3,1,0,2,0,1] would get you to the nd of the array b/c you could hop from index 0 -> 1 -> 4 -> 6 -> end
-# example of what wouldn't get you to the end is [3,3,1,0,0,2,0,1]
-# write a function that returns True if you can reach the end or False if you can't
+"""
+sort of like a board game, given an array you see if the values can get you to the end of the array
+for example, [3,3,1,0,2,0,1] would get you to the nd of the array b/c you could hop from index 0 -> 1 -> 4 -> 6 -> end
+example of what wouldn't get you to the end is [3,3,1,0,0,2,0,1]
+write a function that returns True if you can reach the end or False if you can't
+patterns:
+* keeping track of hte max seen so far in the array
+lessons learned:
+* the while clause was the trickiest part, specifically the i <= furthest_space. This clause stops the loop
+  if the iteration exceeds how far the piece could go in the board game
+"""
 import unittest
 
 
