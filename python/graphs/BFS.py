@@ -1,6 +1,6 @@
 # create and test breadth first search alg
 # lessons learned:
-# * use a queue (deque "deck" in the case of util)
+# * use a queue (deque "deck" in the case of python)
 # * deque is unintuitive for a queue because rather than append and pop, you need to use appendleft and pop (which pops from the right)
 # * don't forget to mark visited as True once a node has been visited to find its adjacent nodes
 # * the steps are root -> appendleft -> while queue -> popleft -> flag visited instance variable as True -> append adjacent nodes
