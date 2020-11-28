@@ -3,6 +3,7 @@ insert an interval [start, end] into a sorted list of intervals
 eg. insert_interval(arr = [[1,3], [5,8]], [2,6]) -> [[1,8]]
 patterns:
 * a for loop with many if conditionals
+* a snowball interval, that can include overlapping intervals
 
 lessons learned:
 * the final elif operates on those that didn't match the initial if clauses, which means you can safely use
