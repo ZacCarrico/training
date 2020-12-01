@@ -2,13 +2,13 @@
 insert an interval [start, end] into a sorted list of intervals
 eg. insert_interval(arr = [[1,3], [5,8]], [2,6]) -> [[1,8]]
 patterns:
-* a for loop with many if conditionals
+* A check for overlaps, and if none, creation of a new interval with the min/max of intervals
+* a snowball interval, that can include overlapping intervals
 
 lessons learned:
-* the final elif operates on those that didn't match the initial if clauses, which means you can safely use
- (new_interval[0] <= interval[1]) or (new_interval[0] >= interval[0]). Using this without the prior if
- clauses wouldn't have worked.
 * create a new interval list rather than trying to modify the input interval list
+* if the interval to be inserted is larger than the current internal, insert and replace new_interval
+*  with the current interval
 """
 import unittest
 
@@ -21,7 +21,7 @@ def insert_interval(intervals, new_interval) -> list:
         elif new_interval[1] < interval[0]:
             result.append(new_interval)
             new_interval = interval
-        elif (new_interval[0] <= interval[1]) or (new_interval[0] >= interval[0]):
+        else:
             new_interval = [min(new_interval[0], interval[0]), max(new_interval[1], interval[1])]
     result.append(new_interval)
     return result
