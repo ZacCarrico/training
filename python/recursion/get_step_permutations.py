@@ -2,6 +2,11 @@
 If someone can climb stairs 1, 2, or 3 steps at a time,
 what are the number of permutations for climbing a
 staircase of height n?
+
+patterns:
+* using a nested function so that you can make use of
+ a variable that is in scope b/c it's in the outer function
+
 lessons learned:
 * You can't use a counter. Just return the sum of the functions
 * You need to use n <= 1 as one of the base cases

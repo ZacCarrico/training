@@ -4,7 +4,8 @@ There are inaccessible points in the matrix.
 Return True if the robot can reach the bottom right or False if it cannot.
 
 patterns:
-* to use create a fake-global variable use a nested function
+* using a nested function so that you can make use of
+ a variable that is in scope b/c it's in the outer function
 
 
 lessons learned:
