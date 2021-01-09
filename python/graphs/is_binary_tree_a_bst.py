@@ -1,15 +1,14 @@
-# fn for determining if binary tree is a binary search tree
-# lessons learned:
-# * always make sure your base case and None case are well handled
-# * there are two ways to do this:
-# 1. using a global last_value variable and comparing node values (O(N) time, O(logN) space complexity b/c of recursion)
-#  * you only need one if check to see if the current value is less than the last value
-#  * it's an in-order traversal with the check for sortedness between descending the left and right
-#  * this only works if there aren't duplicate values
-# 2. using a min/max approach (O(N) time, O(logN) space complexity b/c of recursion)
-#  * this is interesting because the min is None for the entire left branch traversal while the max shrinks,
-#    and the max is None for the entire right branch traversal while the min shrinks
-
+"""
+function for determining if binary tree is a binary search tree
+lessons learned:
+* always make sure your base case and None case are well handled
+* here are two ways to create this function:
+1. using a global last_value variable and comparing node values (O(N) time, O(logN) space complexity b/c of recursion)
+2. using a min/max approach (O(N) time, O(logN) space complexity b/c of recursion).
+ This is the less intuitive approach to me
+ * this is interesting because the min is None for the entire left branch traversal while the max shrinks,
+   and the max is None for the entire right branch traversal while the min shrinks
+"""
 import unittest
 
 
@@ -19,19 +18,21 @@ class Node:
         self.left = left
         self.right = right
 
-last_value = None
-def is_binary_tree_bst_using_global_var(node):
-    global last_value
-    if node == None: # base case for None
+def is_binary_tree_bst(node):
+    last_value = []
+    def helper(node):
+        if node == None: # base case for None
+            return True
+        if helper(node.left) == False:
+            return False
+        if last_value:
+            if node.value < last_value.pop(): # base case for False
+                return False
+        last_value.append(node.value)
+        if helper(node.right) == False:
+            return False
         return True
-    if is_binary_tree_bst_using_global_var(node.left) == False:
-        return False
-    if node.value < last_value: # base case for False
-        return False
-    last_value = node.value
-    if is_binary_tree_bst_using_global_var(node.right) == False:
-        return False
-    return True
+    return helper(node)
 
 def is_binary_tree_bst_using_min_max(node, min, max):
     if node == None: # base case for None
@@ -45,8 +46,8 @@ def is_binary_tree_bst_using_min_max(node, min, max):
 
 class TestIsBinaryTreeBST(unittest.TestCase):
     def test_is_binary_tree_bst_(self):
-        assert(is_binary_tree_bst_using_global_var(Node(1, Node(0, None, None), Node(2, None, None))) == True)
-        assert (is_binary_tree_bst_using_global_var(Node(0, Node(1, None, None), Node(2, None, None))) == False)
+        assert(is_binary_tree_bst(Node(1, Node(0, None, None), Node(2, None, None))) == True)
+        assert (is_binary_tree_bst(Node(0, Node(1, None, None), Node(2, None, None))) == False)
         assert (is_binary_tree_bst_using_min_max(Node(1, Node(0, None, None), Node(2, None, None)), None, None) == True)
         assert (is_binary_tree_bst_using_min_max(Node(0, Node(1, None, None), Node(2, None, None)), None, None) == False)
 
